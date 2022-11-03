@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <div id="intro">
+      <h1>Welcome to my Quiz</h1>
+      <h2 id="headerText">What is your name?</h2>
+      <br />
+    </div>
+
+    <div id="greetingInput">
+      <input id="userName" /> <br />
+      <br />
+      <button onclick="greeting()">Submit</button>
+    </div>
+
+    <div id="quiz">
+      <h3 id="question"></h3>
+      <div id="answerA" onclick="aFunction()"></div>
+      <div id="answerB" onclick="bFunction()"></div>
+      <div id="answerC" onclick="cFunction()"></div>
+      <div id="answerD" onclick="dFunction()"></div>
+      <br />
+
+      <div id="qn1Button" onclick="submitQn1()">
+        <button>Submit Question 1</button>
+      </div>
+      <div id="qn2Button" onclick="submitQn2()">
+        <button>Submit Question 2</button>
+      </div>
+      <div id="qn3Button" onclick="submitQn3()">
+        <button>Submit Question 3</button>
+      </div>
+    </div>
+
+    <style>
+      #intro {
+        text-align: center;
+        color: floralwhite;
+      }
+      #greetingInput {
+        text-align: center;
+        color: floralwhite;
+      }
+      #quiz {
+        text-align: center;
+        color: floralwhite;
+      }
+      #qn1Button {
+        text-align: center;
+      }
+      body {
+        background-color: cornflowerblue;
+      }
+    </style>
+
+    <script>
+      let userName = document.querySelector("#userName");
+      let headerText = document.querySelector("#headerText");
+      let greetingInput = document.querySelector("#greetingInput");
+      let quiz = document.querySelector("#quiz");
+      let qn1Button = document.querySelector("#qn1Button");
+      let qn2Button = document.querySelector("#qn2Button");
+      let qn3Button = document.querySelector("#qn3Button");
+      let question = document.querySelector("#question");
+      let answerA = document.querySelector("#answerA");
+      let answerB = document.querySelector("#answerB");
+      let answerC = document.querySelector("#answerC");
+      let answerD = document.querySelector("#answerD");
+      let iterationNumber = 0;
+      let qnChoice = "";
+      let score = 0;
+
+      let questionList = [
+        "Qn1: What is the name of the largest city in Africa?",
+        "Qn2: In which country do we have Muhammadu Buhari as President?",
+        "Qn3: What State has the largest economy in Africa?"
+      ];
+
+      let aAnswerList = ["Kinshasa", "America", "Ogun"];
+      let bAnswerList = ["Lagos", "Nigeria", "Oyo"];
+      let cAnswerList = ["Eygpt", "Bostwana", "Lagos"];
+      let dAnswerList = ["Cairo", "Cameroon", "Abia"];
+
+      quiz.style.display = "none";
+      qn1Button.style.display = "none";
+      qn2Button.style.display = "none";
+      qn3Button.style.display = "none";
+
+      function reset() {
+        answerA.style.color = "florawhite";
+        answerB.style.color = "floralwhite";
+        answerC.style.color = "florawhite";
+        answerD.style.color = "florawhite";
+
+        question.innerHTML = questionList[iterationNumber];
+        answerA.innerHTML = aAnswerList[iterationNumber];
+        answerB.innerHTML = bAnswerList[iterationNumber];
+        answerC.innerHTML = cAnswerList[iterationNumber];
+        answerD.innerHTML = dAnswerList[iterationNumber];
+      }
+
+      function greeting() {
+        headerText.innerHTML = "";
+        headerText.innerHTML =
+          "Hello " + userName.value + ", welcome to my Quiz.";
+        greetingInput.style.display = "none";
+        quiz.style.display = "block";
+        qn1Button.style.display = "block";
+        question.innerHTML = questionList[iterationNumber];
+        answerA.innerHTML = aAnswerList[iterationNumber];
+        answerB.innerHTML = bAnswerList[iterationNumber];
+        answerC.innerHTML = cAnswerList[iterationNumber];
+        answerD.innerHTML = dAnswerList[iterationNumber];
+      }
+
+      function aFunction() {
+        answerA.style.color = "red";
+        answerB.style.color = "florawhite";
+        answerC.style.color = "florawhite";
+        answerD.style.color = "florawhite";
+        qnChoice = "a";
+      }
+
+      function bFunction() {
+        answerA.style.color = "floralwhite";
+        answerB.style.color = "red";
+        answerC.style.color = "florawhite";
+        answerD.style.color = "florawhite";
+        qnChoice = "b";
+      }
+
+      function cFunction() {
+        answerA.style.color = "florawhite";
+        answerB.style.color = "floralwhite";
+        answerC.style.color = "red";
+        answerD.style.color = "florawhite";
+        qnChoice = "c";
+      }
+
+      function dFunction() {
+        answerA.style.color = "florawhite";
+        answerB.style.color = "floralwhite";
+        answerC.style.color = "florawhite";
+        answerD.style.color = "red";
+        qnChoice = "d";
+      }
+
+      function submitQn1() {
+        if (qnChoice == "a") {
+          score += 1;
+        }
+
+        qn1Button.style.display = "none";
+        qn2Button.style.display = "block";
+        iterationNumber += 1;
+
+        reset();
+      }
+
+      function submitQn2() {
+        if (qnChoice == "b") {
+          score += 1;
+        }
+
+        qn2Button.style.display = "none";
+        qn3Button.style.display = "block";
+        iterationNumber += 1;
+
+        reset();
+      }
+
+      function submitQn3() {
+        if (qnChoice == "c") {
+          score += 1;
+        }
+
+        iterationNumber += 1;
+        headerText.innerHTML = "Your score is " + score;
+        quiz.style.display = "none";
+
+        reset();
+      }
+    </script>
+  </body>
+</html>
